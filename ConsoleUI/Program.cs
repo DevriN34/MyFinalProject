@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ public class Program
 {
     static void Main(string[] args)
     {
-        ProductManager productManager = new ProductManager(new InMemoryProductDal());
+        ProductManager productManager = new ProductManager(new EfProductDal());
 
-        foreach (var Product in productManager.GetAll())
+        foreach (var Product in productManager.GetByUnitPrice(50,100))
         {
             Console.WriteLine(Product.ProductName);
         }
